@@ -20,6 +20,10 @@ clock_out = input("Enter the clock out time (HH:MM AM/PM) or press any key for c
 if not clock_out:
     clock_out = datetime.datetime.now().strftime("%I:%M %p")
 
+clock_out_time = datetime.datetime.strptime(clock_out, "%I:%M %p").time()
+if clock_out_time > datetime.time(hour=17):
+    print("Warning: Clock out time after 5 PM!")
+
 data = {'Date': [date], 'Clock In': [clock_in], 'Clock Out': [clock_out]}
 
 df = pd.DataFrame(data)
