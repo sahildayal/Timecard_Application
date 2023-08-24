@@ -28,6 +28,15 @@ data = {'Date': [date], 'Clock In': [clock_in], 'Clock Out': [clock_out]}
 
 df = pd.DataFrame(data)
 
-output_file = 'clock_times.xlsx'
-df.to_excel(output_file, index=False)
+current_week_start = datetime.date.today() - datetime.timedelta(days=datetime.date.today().weekday())
+output_file = f'week_{current_week_start.strftime("%Y%m%d")}.xlsx'
+
+try:
+    existing_df = pd.read_excel(output_file)
+    df = pd.concat([existing_df, df], ignore_index=True)
+except FileNotFoundError:
+    pass
+
+# output_file = 'clock_times.xlsx'
+# df.to_excel(output_file, index=False)
 print(f"Clock times saved to {output_file} successfully!")
