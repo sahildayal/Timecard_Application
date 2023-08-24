@@ -1,6 +1,13 @@
 import datetime
 import pandas as pd
 
+def is_within_current_week(date):
+    current_date = datetime.date.today()
+    current_week_start = current_date - datetime.timedelta(days=current_date.weekday())
+    current_week_end = current_week_start + datetime.timedelta(days=6)
+
+    return current_week_start <= date <= current_week_end
+
 date = input("Enter the date (DD/MM/YYYY) or press any key for current date: ")
 if not date:
     date = datetime.date.today().strftime("%d/%m/%Y")
