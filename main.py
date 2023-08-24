@@ -37,6 +37,11 @@ try:
 except FileNotFoundError:
     pass
 
+with pd.ExcelWriter(output_file, mode='a', engine='openpyxl') as writer:
+    df.to_excel(writer, sheet_name='Sheet1', index=False, header=False)
+
+print(f"Clock times saved to {output_file} successfully!")
+
 # output_file = 'clock_times.xlsx'
 # df.to_excel(output_file, index=False)
-print(f"Clock times saved to {output_file} successfully!")
+# print(f"Clock times saved to {output_file} successfully!")
