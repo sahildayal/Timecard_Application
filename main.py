@@ -1,4 +1,5 @@
 import datetime
+import os
 import pandas as pd
 
 def is_within_current_week(date):
@@ -29,13 +30,16 @@ data = {'Date': [date], 'Clock In': [clock_in], 'Clock Out': [clock_out]}
 df = pd.DataFrame(data)
 
 current_week_start = datetime.date.today() - datetime.timedelta(days=datetime.date.today().weekday())
-output_file = f'week_{current_week_start.strftime("%Y%m%d")}.xlsx'
+output_directory = 'Timecards'
+os.makedirs(output_directory, exist_ok=True)
+output_file = os.path.join(output_directory, f'{output_directory}/week_{current_week_start.strftime("%Y%m%d")}.xlsx')
 
 try:
     existing_df = pd.read_excel(output_file)
     df = pd.concat([existing_df, df], ignore_index=True)
 except FileNotFoundError:
-    pass
+    existing_df = pd.DataFrame()  # Create an empty DataFrame
+    df = pd.concat([existing_df, df], ignore_index=True)
 
 with pd.ExcelWriter(output_file, mode='a', engine='openpyxl') as writer:
     df.to_excel(writer, sheet_name='Sheet1', index=False, header=False)
