@@ -33,11 +33,11 @@ The Excel file will look something like:
 
 | Date       | Clock In | Clock Out | Task                |  
 |------------|----------|-----------|---------------------|
-| 2022-10-15 | 09:00    | 17:00     | Setup new computer  |
-| 2022-10-16 | 10:00    | 14:00     | Staff meeting       |
-| 2022-10-17 | 08:00    | 12:00     | Work on presentation|
+| 2022-10-15 | 09:00    | 17:00     | Grade HW2           |
+| 2022-10-16 | 10:00    | 14:00     | Start PSS grading   |
+| 2022-10-17 | 08:00    | 12:00     | Mentoring           |
 
-## Customization
+## Improvements to be Made
 
 The script can be customized by:
 
